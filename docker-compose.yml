@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  # Database
+  tebak_tokoh_db:
+    container_name: tebak_tokoh_db
+    image: mysql:5.7
+    volumes:
+      - tebak_tokoh_mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: f9f98f9f998fA
+      MYSQL_DATABASE: tebak_tokoh
+      MYSQL_USER: tebak_tokoh
+      MYSQL_PASSWORD: tebak_tokoh11
+    networks:
+      - tebak_tokoh_mysql
+    ports:
+      - '3306:3306'
+  tebak_tokoh_phpmyadmin:
+    container_name: tebak_tokoh_phpmyadmin
+    depends_on:
+      - tebak_tokoh_db
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8877:80'
+    environment:
+      PMA_HOST: tebak_tokoh_db
+      MYSQL_ROOT_PASSWORD: password 
+    networks:
+      - tebak_tokoh_mysql
+networks:
+  tebak_tokoh_mysql:
+volumes:
+  tebak_tokoh_mysql:
