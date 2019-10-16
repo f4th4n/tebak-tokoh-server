@@ -1,0 +1,7 @@
+admin:
+  user: adminzz
+  password: if9d923ffasFF
+
+http://tebaktokoh.bunga.top/api
+http://tebaktokoh.bunga.top/admin
+http://tebaktokoh.bunga.top/image
