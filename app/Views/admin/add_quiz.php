@@ -27,11 +27,6 @@
     </div>
 
     <div class="form-group">
-      <label for="description">Description</label>
-      <input id="description" type="text" class="form-control" name="description" placeholder="Enter description">
-    </div>
-
-    <div class="form-group">
       <label for="description">Photo</label>
       <input type="file" name="image" id="image" onchange="readURL(this)"/>
       <input type="hidden" name="quiz_pict" id="quiz-pict">
@@ -80,7 +75,6 @@
 
       if(!$('#question').val()) return alert('question is required')
       if(!$('#answer').val()) return alert('answer is required')
-      if(!$('#description').val()) return alert('description is required')
 
       if($('#answer').val().length > 20) return alert('answer max 20 character')
 

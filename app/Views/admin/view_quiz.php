@@ -11,7 +11,6 @@
   <h3>Level: <?= $quiz['level_title'] ?></h3>
   <h3>Question: <?= $quiz['question'] ?></h3>
   <h3>Answer: <?= $quiz['answer'] ?></h3>
-  <h3>Description: <?= $quiz['description'] ?></h3>
   <img src="/image/<?= $quiz['id'] ?>.normal.jpg" style="max-width: 500px" />
   <br /><br />
   <img src="/image/<?= $quiz['id'] ?>.thumb.jpg" style="max-width: 500px" />
