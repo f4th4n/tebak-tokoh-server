@@ -4,13 +4,14 @@
   <title>Quizzes</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body style="margin: 20px">
   <a href="/admin/quizzes/add" class="btn btn-success" style="margin: 20px">Add Quiz</a>
-  <table class="table">
+  <table class="table" style="margin: 20px">
     <thead>
       <tr>
         <th>ID</th>
         <th>Level</th>
+        <th>Question</th>
         <th>Answer</th>
         <th>Action</th>
       </tr>
@@ -20,6 +21,7 @@
         <tr>
           <td><?= $quiz->id ?></td>
           <td><?= $quiz->title ?></td>
+          <td><?= $quiz->question ?></td>
           <td><?= $quiz->answer ?></td>
           <td>
             <a href="/admin/quizzes/<?= $quiz->id ?>">View</a>

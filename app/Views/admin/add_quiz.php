@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css" integrity="sha256-cZDeXQ7c9XipzTtDgc7DML5txS3AkSj0sjGvWcdhfns=" crossorigin="anonymous" />
 </head>
 <body style="margin: 20px">
-  <form id="form-quiz" method="post" class="form-horizontal" action="/admin/quizzes/add">
+  <form id="form-quiz" method="post" class="form-horizontal" action="/admin/quizzes/add" autocomplete="off">
     <div class="form-group">
       <label for="answer">Level</label>
       <select name="level_id" class="form-control">
@@ -18,17 +18,17 @@
 
     <div class="form-group">
       <label for="question">Question</label>
-      <input type="text" class="form-control" name="question" placeholder="Enter question">
+      <input id="question" type="text" class="form-control" name="question" placeholder="Enter question">
     </div>
 
     <div class="form-group">
       <label for="answer">Answer</label>
-      <input type="text" class="form-control" name="answer" placeholder="Enter answer">
+      <input id="answer" type="text" class="form-control" name="answer" placeholder="Enter answer">
     </div>
 
     <div class="form-group">
       <label for="description">Description</label>
-      <input type="text" class="form-control" name="description" placeholder="Enter description">
+      <input id="description" type="text" class="form-control" name="description" placeholder="Enter description">
     </div>
 
     <div class="form-group">
@@ -55,9 +55,9 @@
         var reader = new FileReader()
         reader.onload = function (e) {
           $('#photo').attr('src', e.target.result)
+          initCropper()
         }
         reader.readAsDataURL(input.files[0])
-        setTimeout(initCropper, 500)
       }
     }
 
@@ -74,7 +74,15 @@
     }
 
     $('#submit-btn').click(function() {
+      $('#answer').val($('#answer').val().toLowerCase())
+
       if(!cropper) return alert('image required')
+
+      if(!$('#question').val()) return alert('question is required')
+      if(!$('#answer').val()) return alert('answer is required')
+      if(!$('#description').val()) return alert('description is required')
+
+      if($('#answer').val().length > 20) return alert('answer max 20 character')
 
       const imgUrl = cropper.getCroppedCanvas().toDataURL()
       $('#quiz-pict').val(imgUrl)
