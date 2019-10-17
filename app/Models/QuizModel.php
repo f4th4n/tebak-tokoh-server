@@ -18,4 +18,12 @@ class QuizModel extends Model {
       ->get()
       ->getResult();
   }
+
+  public function last_quiz() {
+    $builder = $this->db->table('quizzes');
+    return $builder
+      ->orderBy('id', 'desc')
+      ->get()
+      ->getRow();
+  }
 }

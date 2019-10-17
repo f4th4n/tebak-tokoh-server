@@ -5,6 +5,7 @@ use App\Libraries\Session;
 
 define('ADMIN_USER', 'adminzz');
 define('ADMIN_PASSWORD', 'if9d923ffasFF');
+define('SHARE_SIDE', 1000);
 define('NORMAL_SIDE', 400);
 define('THUMB_SIDE', 100);
 
@@ -114,13 +115,24 @@ class Admin extends BaseController {
       $im->destroy(); 
     };
 
-    $generate_share_pict = function($file_name, $original_pict_full_path) {
+    $generate_share_pict = function($file_name) {
       if(!$file_name) return null;
 
-      $full_dest = WRITEPATH.'uploads/'.$file_name;
+      $full_dest = WRITEPATH.'uploads/' . $file_name;
       $share_mask = FCPATH . 'share_mask.png';
-      $base = new \Imagick($original_pict_full_path);
+
+      $data_base64 = $this->request->getPost('quiz_pict');
+      list($type, $data_base64) = explode(';', $data_base64);
+      list(, $data_base64)      = explode(',', $data_base64);
+      $data_base64 = base64_decode($data_base64);
+
+      $base = new \Imagick();
+      $base->readimageblob($data_base64);
+      $base->setImageFormat('jpg');
+      $base->resizeImage(SHARE_SIDE, SHARE_SIDE, \Imagick::FILTER_LANCZOS, 1);
+
       $mask = new \Imagick($share_mask);
+      $mask->resizeImage(SHARE_SIDE, SHARE_SIDE, \Imagick::FILTER_LANCZOS, 1);
 
       $base->compositeImage($mask, \Imagick::COMPOSITE_OVER, 0, 0);
       $base->writeImage($full_dest); 
@@ -131,6 +143,6 @@ class Admin extends BaseController {
     $quiz_id = $save_to_db();
     $original_pict_full_path = $save_original_pict($quiz_id . '.normal.jpg');
     $generate_thumbnail_pict($quiz_id . '.thumb.jpg', $original_pict_full_path);
-    $generate_share_pict($quiz_id . '.share.jpg', $original_pict_full_path);
+    $generate_share_pict($quiz_id . '.share.jpg');
   }
 }

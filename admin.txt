@@ -5,3 +5,7 @@ admin:
 http://tebaktokoh.bunga.top/api
 http://tebaktokoh.bunga.top/admin
 http://tebaktokoh.bunga.top/image
+
+---
+push
+scp -r -P2291 /home/fathan/work/f/tebak-tokoh/server/public/image/* root@vps1.bunga.top:/var/www/tebaktokoh.bunga.top/tebak-tokoh-server/public/image/

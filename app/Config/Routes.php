@@ -72,7 +72,7 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/api/last-update', 'Api::lastUpdate');
+$routes->get('/api/last-quiz', 'Api::lastQuiz');
 $routes->get('/api/data', 'Api::data');
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/login', 'Admin::login');
