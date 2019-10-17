@@ -76,7 +76,6 @@ class Admin extends BaseController {
       $quiz['level_id'] = $this->request->getPost('level_id');
       $quiz['answer'] = $this->request->getPost('answer');
       $quiz['question'] = $this->request->getPost('question');
-      $quiz['description'] = $this->request->getPost('description');
 
       $quiz_id = $this->quiz_model->add($quiz);
       return $quiz_id;
