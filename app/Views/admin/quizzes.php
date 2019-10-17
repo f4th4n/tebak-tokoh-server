@@ -22,7 +22,7 @@
           <td><?= $quiz->title ?></td>
           <td><?= $quiz->answer ?></td>
           <td>
-            <a href="/admin/quizzes/<?= $quiz->id ?>">Edit</a>
+            <a href="/admin/quizzes/<?= $quiz->id ?>">View</a>
           </td>
         </tr>
       <?php endforeach ?>

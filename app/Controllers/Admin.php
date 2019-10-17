@@ -15,19 +15,28 @@ class Admin extends BaseController {
     $this->level_model = new LevelModel();
   }
 
+  private function _is_login() {
+    return $this->session->role === 'admin';
+  }
+
   public function index() {
+    if(!$this->_is_login()) return redirect()->to('/admin/login');
+
+    return view('admin/index');
+  }
+
+  public function login() {
+    if($this->_is_login()) return redirect()->to('/admin');
+
     if($this->request->getPost('user')) {
       if($this->request->getPost('user') == ADMIN_USER && $this->request->getPost('password') == ADMIN_PASSWORD) {
         $userdata = array('role' => 'admin');
         $this->session->set($userdata);
+        return redirect()->to('/admin');
       }
     }
 
-    if($this->session->role !== 'admin') {
-      return view('admin/login');
-    }
-
-    return redirect()->to('/admin/quizzes');
+    return view('admin/login');
   }
 
   public function quizzes() {
@@ -51,9 +60,13 @@ class Admin extends BaseController {
     return view('admin/add_quiz', $data);
   }
 
-  public function edit_quiz($id) {
-    var_dump($id);
-    return 'ffff';
+  public function view_quiz($id) {
+    $quiz = $this->quiz_model->find($id);
+    $quiz['level_title'] = $this->level_model->find($quiz['level_id'])['title'];
+    $data = array(
+      'quiz' => $quiz
+    );
+    return view('admin/view_quiz', $data);
   }
 
   private function _save_quiz() {

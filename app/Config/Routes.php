@@ -74,10 +74,11 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/api/last-update', 'Api::lastUpdate');
 $routes->get('/api/data', 'Api::data');
-$routes->get('/image/:id', 'Image::index');
 $routes->get('/admin', 'Admin::index');
+$routes->get('/admin/login', 'Admin::login');
+$routes->post('/admin/login', 'Admin::login');
 $routes->get('/admin/quizzes', 'Admin::quizzes');
-$routes->get('/admin/quizzes/(:num)', 'Admin::edit_quiz/$1');
+$routes->get('/admin/quizzes/(:num)', 'Admin::view_quiz/$1');
 $routes->get('/admin/quizzes/add', 'Admin::add_quiz');
 $routes->post('/admin/quizzes/add', 'Admin::add_quiz');
 $routes->get('/', 'Home::index');

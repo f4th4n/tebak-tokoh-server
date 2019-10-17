@@ -7,7 +7,4 @@ class Api extends BaseController {
     $rows = $quiz_model->getQuizzes();
     return json_encode($rows);
   }
-
-  //--------------------------------------------------------------------
-
 }
