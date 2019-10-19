@@ -74,13 +74,21 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/api/last-quiz', 'Api::lastQuiz');
 $routes->get('/api/data', 'Api::data');
+
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/login', 'Admin::login');
 $routes->post('/admin/login', 'Admin::login');
-$routes->get('/admin/quizzes', 'Admin::quizzes');
-$routes->get('/admin/quizzes/(:num)', 'Admin::view_quiz/$1');
-$routes->get('/admin/quizzes/add', 'Admin::add_quiz');
-$routes->post('/admin/quizzes/add', 'Admin::add_quiz');
+
+$routes->get('/admin/quizzes', 'AdminQuiz::quizzes');
+$routes->get('/admin/quizzes/(:num)', 'AdminQuiz::view_quiz/$1');
+$routes->get('/admin/quizzes/add', 'AdminQuiz::add_quiz');
+$routes->post('/admin/quizzes/add', 'AdminQuiz::add_quiz');
+
+$routes->get('/admin/levels', 'AdminLevel::list');
+$routes->get('/admin/levels/(:num)', 'AdminLevel::view_quiz/$1');
+$routes->get('/admin/levels/add', 'AdminLevel::add');
+$routes->post('/admin/levels/add', 'AdminLevel::add');
+
 $routes->get('/', 'Home::index');
 
 /**

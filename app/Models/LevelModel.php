@@ -5,6 +5,11 @@ use CodeIgniter\Model;
 class LevelModel extends Model {
   protected $table = 'levels';
 
+  public function add($data) {
+    $res = $this->db->table($this->table)->insert($data);
+    return $res->connID->insert_id;
+  }
+
   public function getLevels($id = false) {
     if ($id === false) {
       return $this->findAll();
