@@ -85,7 +85,6 @@ $routes->get('/admin/quizzes/add', 'AdminQuiz::add_quiz');
 $routes->post('/admin/quizzes/add', 'AdminQuiz::add_quiz');
 
 $routes->get('/admin/levels', 'AdminLevel::list');
-$routes->get('/admin/levels/(:num)', 'AdminLevel::view_quiz/$1');
 $routes->get('/admin/levels/add', 'AdminLevel::add');
 $routes->post('/admin/levels/add', 'AdminLevel::add');
 
