@@ -74,7 +74,7 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/api/last-quiz', 'Api::lastQuiz');
 $routes->get('/api/data', 'Api::data');
-$routes->post('/api/login', 'Api::login');
+$routes->post('/api/login', 'ApiLogin::index');
 
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/login', 'Admin::login');
